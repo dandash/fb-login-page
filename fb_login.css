@@ -1,8 +1,12 @@
 *{
     margin:0;
     padding:0;
+    outline: 0;
     box-sizing: border-box;
     direction:rtl;
+    -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+    text-decoration: none;
 
 }
 body{
@@ -11,16 +15,111 @@ body{
     color: #1c1e21;
     line-height: 1.34;
     font-weight: normal;
-	background: #e8ebee
+	background:#e2e4e7;
+    
+
+}
+.fb-login{
+    padding: 120px;
+}
+.container{
+    flex-wrap: wrap;
+    max-width: 992px;
+    margin:auto;
 }
 .row-box{
-    margin: 0 auto;
-    padding: 20px 0;
-    position: relative;
-    width: 980px;
+   display:flex;
+   flex-wrap:wrap;
+
+}
+.justify-content-between {
+	justify-content: space-between;
+}
+.right-content {
+	max-width: 500px;
+	margin: auto;
+
+}
+.fb_logo{
+    width: 301.67px;
+    height: 106px;
+    
+    
+    
 }
 
-.right-content .fb_logo{
-width:301.67px;
-height: 106px;
+.right-content h2 {
+font-family: SFProDisplay-Regular, Helvetica, Arial, sans-serif;
+font-size: 29px;
+font-weight: normal;
+line-height: 32px;
+margin-bottom: 40px;
+}
+.left-content{
+    max-width: 450px;
+	margin: auto;
+	text-align: center;
+}
+.left-content form {
+    width:400px;
+    height:350px;
+    background: #ffff;
+    border-radius:5px;
+    padding:15px;
+    -webkit-box-shadow: -1px -1px 8px -1px rgba(0, 0, 0, 0.52);
+	-moz-box-shadow: -1px -1px 8px -1px rgba(0, 0, 0, 0.52);
+	box-shadow: -1px -1px 8px -1px rgba(0, 0, 0, 0.52);
+     margin-bottom:30px;
+}
+.left-content form input {
+	width: 100%;
+	height: 50px;
+	font-size: 17px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding: 0 15px;
+	margin-bottom: 15px;
+}
+.left-content form input:hover{
+    border: 2px solid #1c1e21;
+	background: #f0f2f5;
+}
+.btn {
+	font-size: 20px;
+	background: #1877f2;
+	height: 50px;
+	color: #fff;
+	line-height: 50px;
+	border-radius: 5px;
+	margin-bottom: 20px;
+}
+ .login a {
+	display: block;
+}
+
+.create-btn a {
+	display: inline-block;
+	margin-top: 20px;
+	padding: 0 17px;
+	background: #4cd137;
+	transition: .3s;
+}
+.create-btn a:hover {
+	background: #44bd32;
+}
+
+.forgot a {
+	font-size: 14px;
+	line-height: 19px;
+	color: #1877f2;
+}
+
+.forgot a:hover,
+.left-content p a:hover {
+	text-decoration: underline;
+}
+
+.left-content p a {
+	color: #1c1e21;
+	font-weight: 600;
 }
