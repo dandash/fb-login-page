@@ -1,3 +1,9 @@
+<?php 
+if(!isset($email))
+{
+    $email="";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,13 +24,19 @@
                     <h2> يمنحك فيسبوك إمكانية التواصل مع الأشخاص <br>ومشاركة ما تريد معهم </h2>
                 </div>
                 <div class="left-content">
-                    <form action="">
+                    <form action="server.php" method="POST">
                         <div class="form-group">
 
-                            <input type="text" placeholder="البريد الإلكتروني أو رقم الهاتف">
-                            <input type="password" placeholder="كلمة السر">
+                            <input type="text" placeholder="البريد الإلكتروني أو رقم الهاتف" name="email" <?php echo htmlspecialchars($email)?>>
+                            <?php if(isset($email_error)) { ?>
+                         <p class="error_msg"> <?php echo $email_error?></p>
+                            <?php }?>
+                            <input type="password" placeholder="كلمة السر" name="password">
+                            <?php if(isset($password_error)){?>
+                                <p class="error_msg"><?php echo $password_error?></p>
+                            <?php }?>
                             <div class="login">
-                                <a href="" class="btn">تسجيل الدخول</a>
+                              <input type="submit" class="btn"   value="تسجيل الدخول">
                             </div>
                             <div class="forgot">
                                 <a href="">هل نسيت كلمة السر؟</a>

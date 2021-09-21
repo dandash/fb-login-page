@@ -123,3 +123,6 @@ margin-bottom: 40px;
 	color: #1c1e21;
 	font-weight: 600;
 }
+.error_msg{
+	color: red;
+}
