@@ -126,3 +126,19 @@ margin-bottom: 40px;
 .error_msg{
 	color: red;
 }
+.welcome_msg{
+
+	text-align: center;
+	margin: 100px;
+	padding: 0px;
+	color: rgb(19, 138, 185);
+	font-family: 'Courier New', Courier, monospace;
+}
+ #your_mail_is{
+	text-align: center;
+	margin: 20px;
+	padding: 0px;
+	color: rgb(206, 12, 132);
+	font-family: 'Courier New', Courier, monospace;
+
+}
