@@ -18,8 +18,14 @@ elseif(strlen($password)>6)
  $password_error="الرقم السري لابد ان يكون اكثر من 6 حروف";
 }
 
-include('fb_login.php');
-if(empty())
+if(empty($email_error)&&empty($password_error)){
+    include('success.php');
+}
+else
+{
+    include('fb_login.php');
+}
+
 
 ?>
 
