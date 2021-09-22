@@ -13,7 +13,7 @@ elseif (isset($email) && !preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)){
 if(empty($password)){
     $password_error="من فضلك ادخل الرقم السري";
 }
-elseif(strlen($password)>6)
+elseif(strlen($password)<6)
 {
  $password_error="الرقم السري لابد ان يكون اكثر من 6 حروف";
 }
