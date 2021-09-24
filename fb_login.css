@@ -142,3 +142,8 @@ margin-bottom: 40px;
 	font-family: 'Courier New', Courier, monospace;
 
 }
+.server__erros, .password_error_msg, .email_error_msg{
+	color: red;
+	font-size: 20px;
+	line-height: 25px;
+}

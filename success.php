@@ -9,6 +9,7 @@
 </head>
 <body>
     <h1 class="welcome_msg">مرحبا بك في شبكه التواصل الاجتماعي فيس بوك </h1>
-    <h2 id="your_mail_is">بريدك الالكتروني هو :<?php echo $email ?></h2>
+    <h2 id="your_mail_is">بريدك الالكتروني هو :<?php     session_start();
+ echo isset($_SESSION['email']) ? $_SESSION['email'] : "not logged in" ?></h2>
 </body>
 </html>
