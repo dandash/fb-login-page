@@ -359,7 +359,7 @@
 
     <div class="select-choice">
         <select name="day" class="day">
-            <option value="0">Select Day</option>
+            <option value="0">يوم</option>
             <?php
             for ($a = 1; $a <= 31; $a++) {
             ?>
@@ -371,7 +371,7 @@
     </div>
     <div class="select-choice">
         <select name="month" class="month">
-            <option value="0">Select Month</option>
+            <option value="0">شهر</option>
             <?php
             for ($m = 1; $m <= 12; $m++) {
                 $num = str_pad($m, 2, 0, STR_PAD_LEFT);
@@ -388,7 +388,7 @@
 
     <div class="select-choice">
         <select name="year" class="year">
-            <option value="0">Select Year</option>
+            <option value="0">سنه</option>
             <?php
             for ($y = 1990; $y <= 2100; $y++) {
             ?>
