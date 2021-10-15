@@ -91,9 +91,10 @@ margin-bottom: 40px;
 	color: #fff;
 	line-height: 50px;
 	border-radius: 5px;
+    text-align: center;
 	margin-bottom: 20px;
 }
- .login a {
+ .login input {
 	display: block;
 }
 
@@ -142,8 +143,230 @@ margin-bottom: 40px;
 	font-family: 'Courier New', Courier, monospace;
 
 }
-.server__erros, .password_error_msg, .email_error_msg{
+.server__erros, .password_error_msg, .email_error_msg , .signup_name_error_msg, 
+.signup_gender_error_msg, .signup_birthday_error_msg ,.signup_email_error_msg,.signup_confirmemail_error_msg,.signup_birthdate_error_msg,
+.signup_password_error_msg ,.signup_server__errors{
 	color: red;
-	font-size: 20px;
-	line-height: 25px;
+	font-size: 14px;
+	line-height: 20px;
 }
+.modal{
+  /*display: none; */
+  position: fixed; 
+  z-index: 1; 
+  padding-top: 50px; 
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto;
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4);
+
+  
+    
+}
+ .modal-signup{
+    
+    width:432px;
+    max-width: 43%;
+    margin: auto;
+    /*height:575px;*/
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1),
+    0 8px 16px rgba(0,0,0,0.1) ; 
+}
+.modal-close {
+  color: #3a3535;
+  float: left;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal-signup-heading{
+    width: 100%;
+    margin-top: 5px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.modal-signup-heading .modal-signup-name{
+    
+    font-size: 30px;
+    font-weight: bold;
+}
+.modal-signup-heading .modal-signup-child-name{
+    
+    font-size: 17px;
+    margin-top: 5px;
+}
+.modal-signup-name{
+    
+    width: 100%;
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-between
+}
+.modal-signup-name input[type=text]{
+    
+    width: 48%;
+    padding:8px;
+    font-size: 17px;
+    border: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #eee;
+}
+
+.modal-signup-email{
+    
+    width: 100%;
+    display: flex;
+    margin-top: 10px;
+}
+.modal-signup-email input[type=email]{
+    
+    width: 100%;
+    padding:8px;
+    font-size: 17px;
+    border: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #eee;
+}
+
+.modal-signup-password{
+    
+    width: 100%;
+    display: flex;
+    margin-top: 10px;
+    
+}
+.modal-signup-password input[type=password]{
+    
+    width: 100%;
+    padding:8px;
+    font-size: 17px;
+    border: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #eee;
+}
+.modal-date-birth{
+    
+   width: 100%;
+   margin-top: 10px;
+   display: flex;
+   align-items: center;
+}
+.modal-date-alert{
+    
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-color: #aaa;
+    font-size: 12px;
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+    margin-left: 3px;
+}
+.modal-date-selection{
+    
+    width: 100%;
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.select-choice{
+    
+    width: 33%;
+    
+}
+.select-choice select{
+ 
+    width: 96%;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 17px;
+    border: none;
+    border: 1px solid #ccc;
+    color: #080808;
+}
+.modal-gender{
+    
+   width: 100%;
+   margin-top: 10px;
+   display: flex;
+   align-items: center; 
+}
+.modal-gender-alert{
+    
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-color: #aaa;
+    font-size: 12px;
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+    margin-left: 3px;
+}
+.modal-gender-choice{
+   
+    width: 100%;
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.modal-gender-name{
+    
+     width: 32%;
+     border: 1px solid #ccc;
+     padding: 5px;
+     border-radius: 5px;
+     font-size: 17px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+}
+.modal-signup-terms{
+    width: 100%;
+    margin-top: 15px; 
+    font-size: 12px;
+}
+
+.modal-signup-button{
+    
+    width: 100%;
+    max-width: 200px;
+    margin: auto;
+    margin-top: 20px;
+}
+.modal-signup-button input{ 
+    
+    width: 100%;
+    padding: 10px;
+    background-color:#32cd32;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;  
+}
+   @media screen and (min-width: 768px) {
+       
+.modal {
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+    }
