@@ -1,16 +1,11 @@
 $(document).ready(function () {
-    $('#signup-account').click(function () {
-
-
+    $('#signup-account').click(function (e) {
+        e.preventDefault();
         $('.modal').show();
-
     });
 
     $('.modal-close').click(function () {
-
-
         $('.modal').hide();
-
     });
     $(document).on('click', ".facebook__form .form__btn", function () {
 

@@ -50,7 +50,7 @@ include('server.php');
         </div>
     </div>
 
-    <div class="modal" id="myModal">
+    <div class="modal" id="myModal" style="display: none;">
         <p><span class="error">* required field</span></p>
         <form class="modal-signup form-group" method="post" action="signup.php" id="signupForm">
 
