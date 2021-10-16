@@ -52,7 +52,7 @@ include('server.php');
 
     <div class="modal" id="myModal" style="display: none;">
         <p><span class="error">* required field</span></p>
-        <form class="modal-signup form-group" method="post" action="signup.php" id="signupForm">
+        <form class="modal-signup form-group" id="signupForm">
 
             <div class="modal-close">
                 X
