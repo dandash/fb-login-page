@@ -1,16 +1,12 @@
 $(document).ready(function () {
-    $('#signup-account').click(function () {
-
-
+    $('#signup-account').click(function (e) {
+        // prevent default behavior for btn in the form
+        e.preventDefault();
         $('.modal').show();
-
     });
 
     $('.modal-close').click(function () {
-
-
         $('.modal').hide();
-
     });
     $(document).on('click', ".facebook__form .form__btn", function () {
 
@@ -55,7 +51,8 @@ $(document).ready(function () {
 
     /* signup validation*/
     $(document).on('click', ".modal-signup .signup_btn", function (e) {
-        //  e.preventDefault();
+        // prevent default behavior which is submitting the form
+        e.preventDefault();
 
         var firstname = $(".modal-signup .modal-signup-name .first_name").val(),
             lastname = $(".modal-signup .modal-signup-name .last_name").val(),
@@ -66,15 +63,13 @@ $(document).ready(function () {
             month = $(".select-choice .month").val(),
             year = $(".select-choice .year").val(),
             gender = $(".modal-signup .modal-gender-choice .modal-gender-name .gender").val();
-        console.log("gender is" + gender);
         error = false;
+
         if (firstname == '' || lastname == '') {
-            console.log("name")
             $(".modal-signup  .signup_name_error_msg").html("من فضلك ادخل الاسم الاول واسم العائله ");
             error = true;
         }
         if (signupemail == '') {
-            console.log("email")
             $(".modal-signup .signup_email_error_msg").html("من فضلك ادخل البريد الالكتروني");
             error = true;
         }
@@ -84,7 +79,6 @@ $(document).ready(function () {
             error = true;
         }
         if (emailconfirm == '') {
-            console.log("emaemail")
             $(".modal-signup .signup_confirmemail_error_msg").html("من فضلك اعد ادخال البريد الالكتروني");
             error = true;
         }
@@ -92,22 +86,19 @@ $(document).ready(function () {
             alert('الايميل غير متطابق !');
         }
         if (signup_password == '') {
-            console.log("password")
             $(".modal-signup .signup_password_error_msg").html("من فضلك ادخل الرقم السري ");
             error = true;
         }
         if (day == 0 || month == 0 || year == 0) {
-            console.log("birthdate")
             $(".modal-signup  .signup_birthdate_error_msg").html("من فضلك اكمل تاريخ الميلاد ");
         }
         if ((gender[0].checked == false && gender[1].checked == false && gender[2].checked == false)) {
-            console.log("gender")
             $(".modal-signup .signup_gender_error_msg").html("من فضلك ادخل النوع ");
             error = true;
         }
 
 
-        if (!error) {
+        if (error) {
             $(".modal-signup .signup_name_error_msg").html("");
             $(".modal-signup .signup_email_error_msg").html("");
             $(".modal-signup .signup_confirmemail_error_msg").html("");
@@ -126,7 +117,6 @@ $(document).ready(function () {
                     month: month,
                     year: year,
                     gender: gender
-
 
                 },
                 function (data, status) {
