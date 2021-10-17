@@ -1,6 +1,9 @@
 <?php
+$servername = "localhost";
+$username = "root";
+$password = " ";
+$dbname = "facebookdb";
 if (isset($_POST['signupformSubmit'])) {
-    $connection = new mysqli("localhost", "root", "", "facebookdb");
     if (empty($_POST['firstName'])) {
 
         echo "من فضلك ادخل الاسم الاول واسم العائله ";
@@ -62,20 +65,25 @@ if (isset($_POST['signupformSubmit'])) {
     } else {
         $gender = $_POST['gender'];
     }
-
-    $existuser = $connection->query("SELECT email FROM users where email='$email'");
-    echo $existuser->fetch_array()[0];
-    if ($existuser->fetch_array()[0] !== $email) {
-        $data = $connection->query("INSERT INTO users (firstName, lastName, email, password,birthDate ,gender) VALUES ('$firstName', '$lastName', '$email', '$password','$date','$gender')");
-    } else {
-        echo "هذا الايميل موجود مسبقا ";
-        $data = false;
-    }
-
-
-    if (!$data) {
-        echo "Connection error!";
-    } else {
-        echo "<p class='success_result'>Your have been signed up - please now Log In</p>";
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $conn->prepare("SELECT email FROM users where email='$email'");
+        $stmt->execute();
+        $existuser = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        echo $existuser[0];
+        if ($existuser[0] !== $email) {
+            $data = $conn->exec("INSERT INTO users (firstName, lastName, email, password,birthDate ,gender) VALUES ('$firstName', '$lastName', '$email', '$password','$date','$gender')");
+        } else {
+            echo "هذا الايميل موجود مسبقا ";
+            $data = false;
+        }
+        if (!$data) {
+            echo "Connection error!";
+        } else {
+            echo "<p class='success_result'>Your have been signed up - please now Log In</p>";
+        }
+    } catch (PDOException $e) {
+        echo "<br>" . $e->getMessage();
     }
 }
