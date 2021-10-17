@@ -362,6 +362,10 @@ margin-bottom: 40px;
     border-radius: 5px;
     cursor: pointer;  
 }
+.success_result {
+    color: #32cd32;
+
+}
    @media screen and (min-width: 768px) {
        
 .modal {

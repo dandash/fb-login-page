@@ -15,12 +15,12 @@ $(document).ready(function () {
             error = false;
         if (email == '') {
             console.log("email")
-            $(".facebook__form .email_error_msg").html("من فضلك ادخل البريد الالكتروني");
+            $(".facebook__form .email_error_msg").html("*من فضلك ادخل البريد الالكتروني*");
             error = true;
         }
         if (password == '') {
             console.log("password")
-            $(".facebook__form .password_error_msg").html("من فضلك ادخل الرقم السري ");
+            $(".facebook__form .password_error_msg").html("*من فضلك ادخل الرقم السري*");
             error = true;
         }
 
@@ -62,7 +62,9 @@ $(document).ready(function () {
             day = $(".select-choice .day").val(),
             month = $(".select-choice .month").val(),
             year = $(".select-choice .year").val(),
-            gender = $(".modal-signup .modal-gender-choice .modal-gender-name .gender").val();
+            date = year + '-' + month + '-' + day;
+        gender = $(".modal-signup .modal-gender-choice .modal-gender-name .gender").val();
+        console.log("gender" + gender);
         error = false;
 
         if (firstname == '' || lastname == '') {
@@ -70,7 +72,7 @@ $(document).ready(function () {
             error = true;
         }
         if (signupemail == '') {
-            $(".modal-signup .signup_email_error_msg").html("من فضلك ادخل البريد الالكتروني");
+            $(".modal-signup .signup_email_error_msg").html("*من فضلك ادخل البريد الالكتروني");
             error = true;
         }
         var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -79,11 +81,12 @@ $(document).ready(function () {
             error = true;
         }
         if (emailconfirm == '') {
-            $(".modal-signup .signup_confirmemail_error_msg").html("من فضلك اعد ادخال البريد الالكتروني");
+            $(".modal-signup .signup_confirmemail_error_msg").html("*من فضلك اعد ادخال البريد الالكتروني");
             error = true;
         }
         if (signupemail != emailconfirm) {
             alert('الايميل غير متطابق !');
+            error = true;
         }
         if (signup_password == '') {
             $(".modal-signup .signup_password_error_msg").html("من فضلك ادخل الرقم السري ");
@@ -91,6 +94,7 @@ $(document).ready(function () {
         }
         if (day == 0 || month == 0 || year == 0) {
             $(".modal-signup  .signup_birthdate_error_msg").html("من فضلك اكمل تاريخ الميلاد ");
+            error = true;
         }
         if ((gender[0].checked == false && gender[1].checked == false && gender[2].checked == false)) {
             $(".modal-signup .signup_gender_error_msg").html("من فضلك ادخل النوع ");
@@ -98,7 +102,7 @@ $(document).ready(function () {
         }
 
 
-        if (error) {
+        if (!error) {
             $(".modal-signup .signup_name_error_msg").html("");
             $(".modal-signup .signup_email_error_msg").html("");
             $(".modal-signup .signup_confirmemail_error_msg").html("");
@@ -110,12 +114,14 @@ $(document).ready(function () {
                 {
                     signupformSubmit: true,
                     email: signupemail,
+                    emailConfirm: emailconfirm,
                     firstName: firstname,
                     lastName: lastname,
                     password: signup_password,
                     day: day,
                     month: month,
                     year: year,
+                    date,
                     gender: gender
 
                 },

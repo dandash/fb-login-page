@@ -1,5 +1,7 @@
 <?php
 include('server.php');
+include('signup.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="ar">
