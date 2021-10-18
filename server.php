@@ -1,46 +1,25 @@
 <?php
-session_start();
-$servername = "localhost";
-$username = "root";
-$password = " ";
-$dbname = "facebookdb";
+if (
+    isset($_POST['formSubmit']) &&  isset($_POST['email'])
+    && isset($_POST['password'])
+) {
 
+    session_start();
+    $connection = new mysqli("localhost", "root", "", "facebookdb");
 
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $email = $connection->real_escape_string($_POST["email"]);
+    $password = sha1($connection->real_escape_string($_POST["password"]));
+    $data = $connection->query("SELECT firstName FROM users WHERE email='$email' AND password='$password'");
 
-    if (
-        isset($_POST['formSubmit'])
-    ) {
-        $email = $_POST["email"];
-        $password = sha1($_POST["password"]);
+    if ($data->num_rows > 0) {
+        $_SESSION["email"] = $email;
+        $_SESSION["loggedIn"] = 1;
+        echo 'ok';
 
-
-        if (empty($email) || empty($password)) {
-            $message = '<label>All fields are required</label>';
-        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo "لقد ادخلت بريد الكتروني غير صالح ";
-            die();
-        } else {
-            $query = "SELECT firstName FROM users WHERE email='$email' AND password= '$password'";
-            $data = $conn->prepare($query);
-            $data->execute();
-
-
-            if ($data->rowCount() > 0) {
-                $_SESSION["email"] = $email;
-                $_SESSION["loggedIn"] = 1;
-                echo 'ok';
-                exit();
-            } else {
-                $message = '<label>Wrong Data</label>';
-                echo $email;
-                echo $password;
-            }
-        }
+        exit();
     }
-} catch (PDOException $e) {
-    echo "<br>" . $e->getMessage();
-    $message = $e->getMessage();
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "لقد ادخلت بريد الكتروني غير صالح ";
+        die();
+    }
 }
