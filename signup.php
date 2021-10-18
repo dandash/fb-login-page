@@ -38,27 +38,34 @@ if (isset($_POST['signupformSubmit'])) {
     if (!empty($_POST["password"])) {
         if (strlen($_POST["password"]) <= '8') {
             echo "يجب أن تحتوي كلمة مرورك على 8 أحرف على الأقل!";
+            die();
         } elseif (!preg_match("#[0-9]+#", $_POST["password"])) {
             echo "يجب أن تحتوي كلمة مرورك على رقم واحد على الأقل!";
+            die();
         } elseif (!preg_match("#[A-Z]+#", $_POST["password"])) {
             echo "يجب أن تحتوي كلمة مرورك على حرف كبير واحد على الأقل! ";
+            die();
         } elseif (!preg_match("#[a-z]+#", $_POST["password"])) {
             echo "يجب أن تحتوي كلمة مرورك على حرف صغير واحد على الأقل!";
+            die();
         }
         $password = sha1($_POST['password']);
     } else {
         echo "من فضلك ادخل الرقم السري ";
+        die();
     }
 
 
     if (empty($_POST['date'])) {
         echo "من فضلك اكمل ادخال تاريخ الميلاد ";
+        die();
     } else {
         $date = $_POST['date'];
     }
 
     if (empty($_POST['gender'])) {
         echo "من فضلك ادخل النوع  ";
+        die();
     } else {
         $gender = $_POST['gender'];
     }
@@ -74,9 +81,11 @@ if (isset($_POST['signupformSubmit'])) {
         } else {
             echo "هذا الايميل موجود مسبقا ";
             $data = false;
+            die();
         }
         if (!$data) {
             echo "Connection error!";
+            die();
         } else {
             echo "<p class='success_result'>Your have been signed up - please now Log In</p>";
         }
