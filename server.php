@@ -1,15 +1,9 @@
 <?php
-session_start();
-$servername = "localhost";
-$username = "root";
-$password = " ";
-$dbname = "facebookdb";
-
+require_once('Connection.php');
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    $conn = Connection::getInstance();
     if (
         isset($_POST['formSubmit'])
     ) {
