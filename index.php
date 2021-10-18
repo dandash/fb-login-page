@@ -19,6 +19,11 @@ include('signup.php');
 <body>
     <div class="fb-login">
         <div class="container">
+            <?php
+            if (isset($message)) {
+                echo '<label class="text-danger">' . $message . '</label>';
+            }
+            ?>
             <div class="row-box justify-content-between">
                 <div class="right-content">
                     <img class="fb_logo" src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" alt="فيسبوك">

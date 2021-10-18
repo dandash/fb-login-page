@@ -38,6 +38,7 @@ $(document).ready(function () {
                     if (status == 'success') {
                         if (data == 'ok') {
                             window.location.replace('home.php')
+                            console.log("ok")
                         } else {
                             $('.facebook__form .server__errors').html(data);
                         }

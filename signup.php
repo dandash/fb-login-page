@@ -48,7 +48,7 @@ if (isset($_POST['signupformSubmit'])) {
         } elseif (!preg_match("#[a-z]+#", $_POST["password"])) {
             echo "يجب أن تحتوي كلمة مرورك على حرف صغير واحد على الأقل!";
         }
-        $password = $_POST['password'];
+        $password = sha1($_POST['password']);
     } else {
         echo "من فضلك ادخل الرقم السري ";
     }
@@ -69,10 +69,9 @@ if (isset($_POST['signupformSubmit'])) {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stmt = $conn->prepare("SELECT email FROM users where email='$email'");
+        // $stmt->bindValue(1, $email);
         $stmt->execute();
-        $existuser = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        echo $existuser[0];
-        if ($existuser[0] !== $email) {
+        if (!$stmt->rowCount() > 0) {
             $data = $conn->exec("INSERT INTO users (firstName, lastName, email, password,birthDate ,gender) VALUES ('$firstName', '$lastName', '$email', '$password','$date','$gender')");
         } else {
             echo "هذا الايميل موجود مسبقا ";
