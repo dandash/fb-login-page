@@ -88,6 +88,7 @@ if (isset($_POST['signupformSubmit'])) {
             die();
         } else {
             echo "<p class='success_result'>Your have been signed up - please now Log In</p>";
+            exit();
         }
     } catch (PDOException $e) {
         echo "<br>" . $e->getMessage();
