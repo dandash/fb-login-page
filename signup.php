@@ -1,9 +1,6 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = " ";
-$dbname = "facebookdb";
 if (isset($_POST['signupformSubmit'])) {
+    $connection = new mysqli("localhost", "root", "", "facebookdb");
     if (empty($_POST['firstName'])) {
 
         echo "من فضلك ادخل الاسم الاول واسم العائله ";
@@ -48,7 +45,7 @@ if (isset($_POST['signupformSubmit'])) {
         } elseif (!preg_match("#[a-z]+#", $_POST["password"])) {
             echo "يجب أن تحتوي كلمة مرورك على حرف صغير واحد على الأقل!";
         }
-        $password = sha1($_POST['password']);
+        $password = $_POST['password'];
     } else {
         echo "من فضلك ادخل الرقم السري ";
     }
@@ -65,24 +62,20 @@ if (isset($_POST['signupformSubmit'])) {
     } else {
         $gender = $_POST['gender'];
     }
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("SELECT email FROM users where email='$email'");
-        // $stmt->bindValue(1, $email);
-        $stmt->execute();
-        if (!$stmt->rowCount() > 0) {
-            $data = $conn->exec("INSERT INTO users (firstName, lastName, email, password,birthDate ,gender) VALUES ('$firstName', '$lastName', '$email', '$password','$date','$gender')");
-        } else {
-            echo "هذا الايميل موجود مسبقا ";
-            $data = false;
-        }
-        if (!$data) {
-            echo "Connection error!";
-        } else {
-            echo "<p class='success_result'>Your have been signed up - please now Log In</p>";
-        }
-    } catch (PDOException $e) {
-        echo "<br>" . $e->getMessage();
+
+    $existuser = $connection->query("SELECT email FROM users where email='$email'");
+    echo $existuser->fetch_array()[0];
+    if ($existuser->fetch_array()[0] !== $email) {
+        $data = $connection->query("INSERT INTO users (firstName, lastName, email, password,birthDate ,gender) VALUES ('$firstName', '$lastName', '$email', '$password','$date','$gender')");
+    } else {
+        echo "هذا الايميل موجود مسبقا ";
+        $data = false;
+    }
+
+
+    if (!$data) {
+        echo "Connection error!";
+    } else {
+        echo "<p class='success_result'>Your have been signed up - please now Log In</p>";
     }
 }
