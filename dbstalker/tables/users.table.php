@@ -5,7 +5,7 @@ class Users extends Stalker_Table
     {
         return Stalker_Schema::build(function ($table) {
             $table->int("id", 11);
-            $table->varchar("firstNme", 45);
+            $table->varchar("firstName", 45);
             $table->varchar("lastName", 45);
             $table->varchar("email", 45);
             $table->varchar("password", 45);

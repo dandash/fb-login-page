@@ -1,7 +1,4 @@
 <?php
-//require_once('Connection.php');
-include_once './dbstalker/core/stalker_configuration.core.php';
-include_once './dbstalker/core/stalker_database.core.php';
 
 try {
 
@@ -21,7 +18,7 @@ try {
             die();
         } else {
             $query = "SELECT firstName FROM users WHERE email='$email' AND password= '$password'";
-            $data = $conn->execute($query, array(1));
+            $data = $conn->execute($query, array());
 
 
             if ($data->rowCount() > 0) {
@@ -30,13 +27,13 @@ try {
                 echo 'ok';
                 exit();
             } else {
-                $message = '<label>Wrong Data</label>';
-                echo $email;
-                echo $password;
+                echo "user doesn't exit!";
+                exit();
             }
         }
     }
 } catch (PDOException $e) {
     echo "<br>" . $e->getMessage();
     $message = $e->getMessage();
+    exit();
 }

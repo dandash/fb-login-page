@@ -1,0 +1,8 @@
+{
+  "database": {
+    "host": "localhost",
+    "database": "facebookdb",
+    "user": "root",
+    "password": ""
+  }
+}
