@@ -89,12 +89,7 @@ if (isset($_POST['signupformSubmit'])) {
         }
         if (!$data) {
             echo "Connection error!";
-            echo $firstName;
-            echo $lastName;
-            echo $email;
-            echo $password;
-            echo $date;
-            echo $gender;
+
             die();
         } else {
             echo "<p class='success_result'>Your have been signed up - please now Log In</p>";
