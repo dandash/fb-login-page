@@ -1,6 +1,4 @@
 <?php
-include_once './dbstalker/core/stalker_configuration.core.php';
-include_once './dbstalker/core/stalker_database.core.php';
 
 
 if (isset($_POST['signupformSubmit'])) {
@@ -39,7 +37,7 @@ if (isset($_POST['signupformSubmit'])) {
     }
 
     if (!empty($_POST["password"])) {
-        if (strlen($_POST["password"]) <= '8') {
+        if (strlen($_POST["password"]) < '8') {
             echo "يجب أن تحتوي كلمة مرورك على 8 أحرف على الأقل!";
             die();
         } elseif (!preg_match("#[0-9]+#", $_POST["password"])) {
