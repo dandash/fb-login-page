@@ -1,6 +1,11 @@
 <?php
+session_start();
+
 include('./classes/server.php');
 include('./classes/signup.php');
+include_once './dbstalker/core/stalker_configuration.core.php';
+include_once './dbstalker/core/stalker_database.core.php';
+
 
 ?>
 <!DOCTYPE html>

@@ -114,7 +114,7 @@ $(document).ready(function () {
             $(".modal-signup .signup_birthday_error_msg").html("");
             $(".modal-signup .signup_gender_error_msg").html("");
 
-            $.post("./classes/signup.php",
+            $.post("",
                 {
                     signupformSubmit: true,
                     email: signupemail,

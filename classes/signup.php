@@ -1,8 +1,8 @@
 <?php
 //require_once('Connection.php');
 //require_once('dbmigration.php');
-include_once 'C:\wamp64\www\starkid\fb-login-page\dbstalker\core\stalker_configuration.core.php';
-include_once 'C:\wamp64\www\starkid\fb-login-page\dbstalker\core\stalker_database.core.php';
+include_once './dbstalker/core/stalker_configuration.core.php';
+include_once './dbstalker/core/stalker_database.core.php';
 
 
 if (isset($_POST['signupformSubmit'])) {
@@ -92,7 +92,7 @@ if (isset($_POST['signupformSubmit'])) {
 
             die();
         } else {
-            echo "<p class='success_result'>Your have been signed up - please now Log In</p>";
+            echo "<p class='success_result'>Your have been signed up - please now Log In </p>";
             exit();
         }
     } catch (PDOException $e) {
