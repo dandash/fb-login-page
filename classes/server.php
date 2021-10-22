@@ -1,9 +1,12 @@
 <?php
-require_once('Connection.php');
+//require_once('Connection.php');
+include_once './dbstalker/core/stalker_configuration.core.php';
+include_once './dbstalker/core/stalker_database.core.php';
 
 try {
 
-    $conn = Connection::getInstance();
+
+    $conn = Stalker_Database::instance();
     if (
         isset($_POST['formSubmit'])
     ) {
@@ -18,8 +21,7 @@ try {
             die();
         } else {
             $query = "SELECT firstName FROM users WHERE email='$email' AND password= '$password'";
-            $data = $conn->prepare($query);
-            $data->execute();
+            $data = $conn->execute($query, array(1));
 
 
             if ($data->rowCount() > 0) {

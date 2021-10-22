@@ -1,5 +1,10 @@
 <?php
-require_once('Connection.php');
+//require_once('Connection.php');
+//require_once('dbmigration.php');
+include_once 'C:\wamp64\www\starkid\fb-login-page\dbstalker\core\stalker_configuration.core.php';
+include_once 'C:\wamp64\www\starkid\fb-login-page\dbstalker\core\stalker_database.core.php';
+
+
 if (isset($_POST['signupformSubmit'])) {
     if (empty($_POST['firstName'])) {
 
@@ -71,13 +76,12 @@ if (isset($_POST['signupformSubmit'])) {
     }
     try {
 
-        $conn = Connection::getInstance();
-        $stmt = $conn->prepare("SELECT email FROM users where email='$email' limit 1");
-        $stmt->execute();
+        $conn = Stalker_Database::instance();
+        $stmt = $conn->execute("SELECT email FROM users where email='$email' limit 1");
         $existuser  = $stmt->fetch();
 
         if (!$existuser) {
-            $data = $conn->exec("INSERT INTO users (firstName, lastName, email, password,birthDate ,gender) VALUES ('$firstName', '$lastName', '$email', '$password','$date','$gender')");
+            $data = $conn->execute("INSERT INTO users (firstName, lastName, email, password,birthDate ,gender) VALUES ('$firstName', '$lastName', '$email', '$password','$date','$gender')");
         } else {
             echo "هذا الايميل موجود مسبقا ";
             $data = false;
@@ -85,6 +89,12 @@ if (isset($_POST['signupformSubmit'])) {
         }
         if (!$data) {
             echo "Connection error!";
+            echo $firstName;
+            echo $lastName;
+            echo $email;
+            echo $password;
+            echo $date;
+            echo $gender;
             die();
         } else {
             echo "<p class='success_result'>Your have been signed up - please now Log In</p>";

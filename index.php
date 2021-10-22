@@ -1,6 +1,6 @@
 <?php
-include('server.php');
-include('signup.php');
+include('./classes/server.php');
+include('./classes/signup.php');
 
 ?>
 <!DOCTYPE html>
@@ -10,7 +10,7 @@ include('signup.php');
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>facebook</title>
-    <link rel="stylesheet" href="fb_login.css">
+    <link rel="stylesheet" href="./styles/fb_login.css">
     <!-- jquery plugin -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -108,7 +108,7 @@ include('signup.php');
 
             <div class="modal-date-selection">
 
-                <?php include('date_birth.php'); ?>
+                <?php include('./classes/date_birth.php'); ?>
             </div>
             <p class="signup_birthdate_error_msg"></p>
 
@@ -176,7 +176,7 @@ include('signup.php');
 
 
 
-    <script src="./index.js"></script>
+    <script src="./scripts/index.js"></script>
 
 </body>
 

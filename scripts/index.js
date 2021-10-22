@@ -37,9 +37,13 @@ $(document).ready(function () {
                 function (data, status) {
                     if (status == 'success') {
                         if (data == 'ok') {
-                            window.location.replace('home.php')
+                            console.log("hello");
+                            window.location.replace('./classes/home.php');
+
                         } else {
-                            $('.facebook__form .server__errors').html(data);
+                            //  $('.facebook__form .server__errors').html(data);
+                            console.log(status);
+
                         }
                     } else {
                         alert("something went wrong");
@@ -110,7 +114,7 @@ $(document).ready(function () {
             $(".modal-signup .signup_birthday_error_msg").html("");
             $(".modal-signup .signup_gender_error_msg").html("");
 
-            $.post("signup.php",
+            $.post("./classes/signup.php",
                 {
                     signupformSubmit: true,
                     email: signupemail,
