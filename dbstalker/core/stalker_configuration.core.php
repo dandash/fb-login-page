@@ -21,10 +21,10 @@ class Stalker_Configuration
     {
     }
 
-    public static function set_stalker_configuration($config = "./dbstalker\stalker_config.json")
+    public static function set_stalker_configuration($config = "./dbstalker/stalker_config.json")
     {
         if (is_string($config)) {
-            self::$configuration = json_decode(file_get_contents("./dbstalker\stalker_config.json"));
+            self::$configuration = json_decode(file_get_contents("./dbstalker/stalker_config.json"));
             if (json_last_error() !== JSON_ERROR_NONE) {
                 self::$fatal_error = json_last_error();
                 return FALSE;
