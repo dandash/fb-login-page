@@ -1,8 +1,6 @@
 <?php
-//require_once('Connection.php');
-//require_once('dbmigration.php');
-include_once 'C:\wamp64\www\starkid\fb-login-page\dbstalker\core\stalker_configuration.core.php';
-include_once 'C:\wamp64\www\starkid\fb-login-page\dbstalker\core\stalker_database.core.php';
+include_once './dbstalker/core/stalker_configuration.core.php';
+include_once './dbstalker/core/stalker_database.core.php';
 
 
 if (isset($_POST['signupformSubmit'])) {
