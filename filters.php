@@ -6,7 +6,7 @@ global $router;
 $user = true;
 $admin = false;
 
-$router->filter("isloggedin", function () {
+$router->filter("is_user", function () {
   global $user;
   if ($user)
     return true;
@@ -19,4 +19,12 @@ $router->filter("is_admin", function () {
   if ($admin)
     return true;
   return false;
+});
+
+$router->filter("isLoggedIn", function () {
+  if ($_SESSION['loggedIn']) {
+    header('Location : ./classes/home.php');
+  } else {
+    echo "not loggedin";
+  }
 });

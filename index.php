@@ -49,19 +49,10 @@ $router->group("starkid/fb-login-page", function ($router) {
     $router->get('/home', function () {
         include './classes/home.php';
     });
-    $router->get('/logout', function () {
-        include 'fb_index.php';
-    });
     $router->post(
         '/login',
         [new Server_Control(), 'login'],
-        $router->filter('isLoggedIn', function () {
-            if ($_SESSION['loggedIn']) {
-                header('Location : ./classes/home.php');
-            } else {
-                echo "not loggedin";
-            }
-        })
+        //"isLoggedIn"
     );
 
     $router->post('/signup', [new Server_Control(), 'signup']);

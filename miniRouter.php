@@ -312,7 +312,6 @@ class miniRouter
             $this->register_route($uri, $name, $controller, $filters, 'HEAD');
         }
 
-
         if ($this->http_method() === 'HEAD') {
             $this->matched_route_selector($uri, $controller, $filters);
         }
