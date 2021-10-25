@@ -127,12 +127,13 @@ margin-bottom: 40px;
 .error_msg{
 	color: red;
 }
-.welcome_msg{
+.welcome_msg h1
+{
 
 	text-align: center;
 	margin: 100px;
 	padding: 0px;
-	color: rgb(19, 138, 185);
+	color: rgb(24, 86, 110);
 	font-family: 'Courier New', Courier, monospace;
 }
  #your_mail_is{

@@ -1,190 +1,75 @@
 <?php
 session_start();
+require_once('miniRouter.php');
+//require_once('filters.php');
 include_once './dbstalker/core/stalker_configuration.core.php';
+include_once './dbstalker/core/stalker_registerar.core.php';
+include_once './dbstalker/core/stalker_schema.core.php';
+include_once './dbstalker/core/stalker_validator.core.php';
 include_once './dbstalker/core/stalker_database.core.php';
-include('./classes/server.php');
-include('./classes/signup.php');
-
-?>
-<!DOCTYPE html>
-<html lang="ar">
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>facebook</title>
-    <link rel="stylesheet" href="./styles/fb_login.css">
-    <!-- jquery plugin -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-</head>
-
-<body>
-    <div class="fb-login">
-        <div class="container">
-            <div class="row-box justify-content-between">
-                <div class="right-content">
-                    <img class="fb_logo" src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" alt="فيسبوك">
-
-                    <h2> يمنحك فيسبوك إمكانية التواصل مع الأشخاص <br>ومشاركة ما تريد معهم </h2>
-                </div>
-                <div class="left-content">
-                    <form class="facebook__form">
-                        <div class="form-group">
-
-                            <input type="text" placeholder="البريد الإلكتروني أو رقم الهاتف" name="email" class="form__mail">
-                            <p class="email_error_msg"></p>
-                            <input type="password" placeholder="كلمة السر" name="password" class="form__password">
-                            <p class="password_error_msg"></p>
-                            <div class="login">
-                                <input class="btn form__btn" value="تسجيل الدخول" />
-                            </div>
-                            <div class="forgot">
-                                <a href="">هل نسيت كلمة السر؟</a>
-                            </div>
-                            <div class="create-btn">
-                                <a href="" id="signup-account" class="btn">إنشاء حساب جديد</a>
-                            </div>
-                            <p class="server__errors"></p>
-
-                    </form>
-
-                </div>
-                <p><a href="">إنشاء صفحة</a> ‏ لفرق موسيقية أو مشاهير أو أنشطة تجارية.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="myModal" style="display: none;">
-        <p><span class="error">* required field</span></p>
-        <form class="modal-signup form-group" id="signupForm">
-
-            <div class="modal-close">
-                X
-            </div>
-
-            <div class="modal-signup-heading">
-
-                <p class="modal-signup-name">إنشاء حساب في فيسبوك</p>
-
-                <p class="modal-signup-child-name">يتميز بالسرعة والسهولة</p>
-
-            </div>
-
-            <div class="modal-signup-name">
-
-                <input type="text" placeholder="الاسم الأول" name="firstName" class="first_name">
-                <input type="text" placeholder="اسم العائلة" name="lastName" class="last_name">
-
-            </div>
-            <p class="signup_name_error_msg"></p>
-            <div class="modal-signup-email">
-
-                <input type="email" placeholder="رقم الهاتف المحمول أو البريد الإلكتروني" name="signup_email" id="signupemail" class="signup_email">
-
-            </div>
-            <p class="signup_email_error_msg"></p>
-
-            <div class="modal-signup-email">
-                <input name="emailConfirm" class="emailConfirm" type="email" placeholder="أعد إدخال البريد الإلكتروني" id="confemail" />
-            </div>
-            <p class="signup_confirmemail_error_msg"></p>
-
-            <div class="modal-signup-password">
-
-                <input type="password" placeholder="كلمة السر الجديدة" name="password" class="signup_password">
-
-            </div>
-            <p class="signup_password_error_msg"></p>
-
-            <div class="modal-date-birth">
-
-                <label for="">تاريخ الميلاد</label>
-
-                <div class="modal-date-alert">
-
-                    <a>&#63;</a>
-
-                </div>
-
-            </div>
-
-            <div class="modal-date-selection">
-
-                <?php include('./classes/date_birth.php'); ?>
-            </div>
-            <p class="signup_birthdate_error_msg"></p>
-
-            <div class="modal-gender">
-
-                <label for="">الجنس</label>
-
-                <div class="modal-gender-alert">
-
-                    <a>&#63;</a>
-
-                </div>
-
-            </div>
-
-            <div class="modal-gender-choice">
-
-                <div class="modal-gender-name">
-
-                    <label for="gender">أنثى</label>
-
-                    <input type="radio" name="gender" class="gender" value="female">
-
-
-                </div>
-
-                <div class="modal-gender-name">
-
-                    <label for="gender">ذكر</label>
-
-                    <input type="radio" name="gender" class="gender" value="male">
-
-                </div>
-
-                <div class="modal-gender-name">
-
-                    <label for="gender">مخصص</label>
-
-                    <input type="radio" name="gender" class="gender" value="custom">
-
-                </div>
-
-            </div>
-            <p class="signup_gender_error_msg"></p>
-
-            <div class="modal-signup-terms">
-
-                <p> بالنقر على "‏إنشاء حساب في فيسبوك‏"، فإنك توافق على ‏الشروط‏ و‏سياسة البيانات‏ و‏سياسة ملفات تعريف الارتباط‏. ويمكن أن تتلقى إشعارات عبر رسائل SMS من فيسبوك، ويمكنك إلغاء تلقي هذه الإشعارات في أي وقت.
-                </p>
-
-            </div>
-
-            <div class="modal-signup-button">
-
-                <input type="submit" name="signup" id="signupBtn" class="signup_btn" value="تسجيل الاشتراك"></input>
-
-            </div>
-            <p class="signup_server__errors"></p>
-            <p class="success_result"></p>
-    </div>
-
-    </form>
-
-    </div>
-
-
-
-    <script src="./scripts/index.js"></script>
-
-</body>
-
-
-
-
-
-</html>
+include_once './dbstalker/core/stalker_information_schema.core.php';
+include_once './dbstalker/core/stalker_query.core.php';
+include_once './dbstalker/core/stalker_migrator.core.php';
+include_once './dbstalker/core/stalker_backup.core.php';
+include_once './dbstalker/core/stalker_table.core.php';
+include_once './dbstalker/core/stalker_seed.core.php';
+include_once './dbstalker/core/stalker_seeder.core.php';
+include_once './dbstalker/core/stalker_view.core.php';
+include_once './classes/server_control.php';
+$control = new Server_Control();
+
+
+
+
+
+
+foreach (glob("./dbstalker/tables/*.table.php") as $file) {
+    require_once $file;
+}
+foreach (glob("../dbstalker/views/*.view.php") as $file) {
+    require_once $file;
+}
+
+foreach (glob("../dbstalker/seeds/*.seed.php") as $file) {
+    require_once $file;
+}
+
+Stalker_Registerar::auto_register();
+if (Stalker_Migrator::need_migration()) {
+    Stalker_Migrator::migrate();
+}
+
+$router = new miniRouter();
+
+$router->group("starkid/fb-login-page", function ($router) {
+
+    $router->get('/', function () {
+        include 'fb_index.php';
+    });
+    $router->get('/home', function () {
+        include './classes/home.php';
+    });
+    $router->get('/logout', function () {
+        include 'fb_index.php';
+    });
+    $router->post(
+        '/login',
+        [new Server_Control(), 'login'],
+        $router->filter('isLoggedIn', function () {
+            if ($_SESSION['loggedIn']) {
+                header('Location : ./classes/home.php');
+            } else {
+                echo "not loggedin";
+            }
+        })
+    );
+
+    $router->post('/signup', [new Server_Control(), 'signup']);
+    $router->post('/logout', [new Server_Control(), 'logout']);
+});
+$router->fallback(function () {
+    echo "Page Not Found";
+});
+
+
+$router->start_routing();

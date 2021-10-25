@@ -1,4 +1,8 @@
 $(document).ready(function () {
+    var getUrl = window.location;
+    var url = getUrl.protocol + "//" + getUrl.host + getUrl.pathname;
+
+
     $('#signup-account').click(function (e) {
         // prevent default behavior for btn in the form
         e.preventDefault();
@@ -14,12 +18,10 @@ $(document).ready(function () {
             password = $(".facebook__form .form__password").val(),
             error = false;
         if (email == '') {
-            console.log("email")
             $(".facebook__form .email_error_msg").html("*من فضلك ادخل البريد الالكتروني*");
             error = true;
         }
         if (password == '') {
-            console.log("password")
             $(".facebook__form .password_error_msg").html("*من فضلك ادخل الرقم السري*");
             error = true;
         }
@@ -28,7 +30,7 @@ $(document).ready(function () {
         if (!error) {
             $(".facebook__form .email_error_msg").html("");
             $(".facebook__form .password_error_msg").html("");
-            $.post("",
+            $.post(url + "/login",
                 {
                     formSubmit: true,
                     email: email,
@@ -37,12 +39,16 @@ $(document).ready(function () {
                 function (data, status) {
                     if (status == 'success') {
                         if (data == 'ok') {
-                            console.log("hello");
-                            window.location.replace('./classes/home.php');
+
+                            window.location.href = url + "home";
+                            console.log(url);
+                            console.log(data);
+
+
 
                         } else {
-                            //  $('.facebook__form .server__errors').html(data);
-                            console.log(data);
+                            $('.facebook__form .server__errors').html(data);
+
 
                         }
                     } else {
@@ -114,7 +120,7 @@ $(document).ready(function () {
             $(".modal-signup .signup_birthday_error_msg").html("");
             $(".modal-signup .signup_gender_error_msg").html("");
 
-            $.post("",
+            $.post(url + "/signup",
                 {
                     signupformSubmit: true,
                     email: signupemail,

@@ -1,11 +1,13 @@
 <?php
-session_start();
+//session_start();
 
 if (!isset($_SESSION["email"]) || !isset($_SESSION["loggedIn"])) {
 
-    echo "you are not loggedin";
+    header("Location: /starkid/fb-login-page/");
     exit();
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ar">
@@ -19,8 +21,9 @@ if (!isset($_SESSION["email"]) || !isset($_SESSION["loggedIn"])) {
 
 <body>
 
-    <h1 class="welcome_msg">مرحبا بك في شبكه التواصل الاجتماعي فيس بوك </h1>
+    <h1 class="welcome_msg"> مرحبا بك في شبكه التواصل الاجتماعي فيس بوك </h1>
     <h2 id="your_mail_is">بريدك الالكتروني هو :<?php echo  $_SESSION['email'] ?></h2>
+    <a href="/starkid/fb-login-page/logout">تسجيل الخروج</a>
 
 </body>
 
